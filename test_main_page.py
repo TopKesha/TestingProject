@@ -18,3 +18,5 @@ def test_guest_should_see_login_link(browser):
 def go_to_login_page(browser):
     login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
     login_link.click()
+    alert = self.browser.switch_to.alert
+    alert.accept()
