@@ -4,6 +4,10 @@ from selenium.webdriver.common.by import By
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
 class LoginPageLocators():
     LOGIN_EMAIL = (By.CSS_SELECTOR, "#id_login-username")
     LOGIN_PASS = (By.CSS_SELECTOR, "#id_login-password")
@@ -21,3 +25,4 @@ class ProductPageLocators():
     DISCOUNT_MSG = (By.CSS_SELECTOR,"#messages > .alert:nth-child(2) strong")
     PRICE_IN_BASKET_MSG = (By.CSS_SELECTOR,"#messages > .alert:nth-child(3) strong")
     ITEM_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages > .alert:nth-child(1)")
