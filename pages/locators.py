@@ -7,6 +7,7 @@ class MainPageLocators():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_LINK = (By.CSS_SELECTOR, ".btn-group > :nth-child(1)")
 
 class LoginPageLocators():
     LOGIN_EMAIL = (By.CSS_SELECTOR, "#id_login-username")
@@ -26,3 +27,7 @@ class ProductPageLocators():
     PRICE_IN_BASKET_MSG = (By.CSS_SELECTOR,"#messages > .alert:nth-child(3) strong")
     ITEM_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages > .alert:nth-child(1)")
+
+class BasketPageLocators():
+    EMPTY_BASKET = (By.XPATH, "//p[contains(text(), 'Your basket is empty.')]")
+    BASKET_ITEMS = (By.CSS_SELECTOR, ".basket-items")
