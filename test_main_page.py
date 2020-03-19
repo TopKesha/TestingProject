@@ -7,7 +7,6 @@ link = "http://selenium1py.pythonanywhere.com/"
 
 @pytest.mark.login_guest
 class TestLoginFromLoginPage():
-
     def test_guest_can_go_to_login_page(self,browser):
         page = MainPage(browser,link)
         page.open()
@@ -27,9 +26,3 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_not_see_product_in_basket()
     basket_page.should_see_empty_basket_text()
-
-def go_to_login_page(browser):
-    login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
-    login_link.click()
-    alert = self.browser.switch_to.alert
-    alert.accept()

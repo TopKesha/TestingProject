@@ -5,17 +5,23 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC 
 from .locators import BasePageLocators
 import math
-import time
 
 class BasePage():
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, url):
         self.browser = browser
         self.url = url
-       # self.browser.implicitly_wait(timeout)
 
     def open(self):
         self.browser.get(self.url)
     
+    def go_to_basket_page(self):
+        basket_link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        basket_link.click()
+
+    def go_to_login_page(self):
+        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        login_link.click()
+
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
@@ -40,20 +46,12 @@ class BasePage():
 
         return True
 
-    def go_to_login_page(self):
-        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
-        login_link.click()
-        
-    def go_to_basket_page(self):
-        basket_link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
-        basket_link.click()
-
-    def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
-
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                     " probably unauthorised user"
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
@@ -61,8 +59,6 @@ class BasePage():
         answer = str(math.log(abs((12 * math.sin(float(x))))))
         alert.send_keys(answer)
         alert.accept()
-        #print(answer)
-        #time.sleep(500)
         try:
             alert = self.browser.switch_to.alert
             alert_text = alert.text
